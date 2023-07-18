@@ -1,7 +1,10 @@
 package com.lyf.blog.controller;
 
+import com.lyf.blog.pojo.User;
 import com.lyf.blog.service.UserService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -17,7 +20,9 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    public void getUser(){
-
+    @RequestMapping(value = "/getByUserId/{userId}",method = RequestMethod.GET)
+    public User getUser(@PathVariable int userId){
+        return userService.getByUserId(userId);
     }
+
 }

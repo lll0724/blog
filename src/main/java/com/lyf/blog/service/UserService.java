@@ -1,6 +1,6 @@
 package com.lyf.blog.service;
 
-import com.lyf.blog.bean.User;
+import com.lyf.blog.pojo.User;
 import com.lyf.blog.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,8 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
-    public User getByUserId(String userId){
+    public User getByUserId(int userId){
         return userMapper.selectById(userId);
     }
+
 }

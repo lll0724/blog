@@ -1,6 +1,6 @@
-# ÅäÖÃ¶Ë¿Ú
+# é…ç½®ç«¯å£
 server:
-  port: 8080
+  port: 8088
   servlet:
     #    context-path: /api
     application-display-name: demo
@@ -10,65 +10,75 @@ spring:
     name: demo
   profiles:
     active: dev
-  # ÅäÖÃÊı¾İÔ´
+  # é…ç½®æ•°æ®æº
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false # MySQLÔÚ¸ß°æ±¾ĞèÒªÖ¸Ã÷ÊÇ·ñ½øĞĞSSLÁ¬½Ó ½â¾öÔò¼ÓÉÏ &useSSL=false
-    name: demo
+    url: jdbc:mysql://127.0.0.1:3306/blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false # MySQLåœ¨é«˜ç‰ˆæœ¬éœ€è¦æŒ‡æ˜æ˜¯å¦è¿›è¡ŒSSLè¿æ¥ è§£å†³åˆ™åŠ ä¸Š &useSSL=false
     username: root
     password: 123456
-    # Ê¹ÓÃdruidÊı¾İÔ´
+    # ä½¿ç”¨druidæ•°æ®æº
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     filters: stat
+    #æœ€å¤§æ´»åŠ¨è¿æ¥æ•°
     maxActive: 20
+    #åˆå§‹åŒ–æ—¶åˆ›å»ºçš„åˆå§‹è¿æ¥æ•°
     initialSize: 1
+    #å½“è¿æ¥æ± è€—å°½æ—¶ï¼Œè¿æ¥æ± ç­‰å¾…å¯ç”¨è¿æ¥çš„æœ€å¤§æ—¶é—´
     maxWait: 60000
+    #è¿æ¥æ± ä¸­åº”ä¿æŒçš„æœ€å°ç©ºé—²è¿æ¥æ•°
     minIdle: 1
+    #ç©ºé—²è¿æ¥æ¸…ç†çº¿ç¨‹è¿è¡Œçš„æ—¶é—´é—´éš”
     timeBetweenEvictionRunsMillis: 60000
+    #ç©ºé—²è¿æ¥æ¸…ç†çº¿ç¨‹è¿è¡Œçš„æ—¶é—´é—´éš”
     minEvictableIdleTimeMillis: 300000
+    #éªŒè¯è¿æ¥æœ‰æ•ˆæ€§çš„SQLæŸ¥è¯¢è¯­å¥
     validationQuery: select 'x'
+    #éªŒè¯è¿æ¥æœ‰æ•ˆæ€§çš„SQLæŸ¥è¯¢è¯­å¥
     testWhileIdle: true
+    #æ˜¯å¦åœ¨ä»è¿æ¥æ± å€Ÿç”¨è¿æ¥æ—¶é€šè¿‡æ‰§è¡Œ validationQuery æ¥éªŒè¯è¿æ¥çš„æœ‰æ•ˆæ€§
     testOnBorrow: false
+    #æŒ‡å®šæ˜¯å¦åœ¨å°†è¿æ¥å½’è¿˜åˆ°è¿æ¥æ± æ—¶é€šè¿‡æ‰§è¡Œ validationQuery æ¥éªŒè¯è¿æ¥çš„æœ‰æ•ˆæ€§
     testOnReturn: false
+    #æ˜¯å¦å¯¹é¢„ç¼–è¯‘è¯­å¥è¿›è¡Œè¿æ¥æ± åŒ–
     poolPreparedStatements: true
+    #è¿æ¥æ± ä¸­å¯ä»¥ç¼“å­˜çš„æœ€å¤§é¢„ç¼–è¯‘è¯­å¥æ•°
     maxOpenPreparedStatements: 20
-
 management:
   security:
     enabled: false
 
-# mybatis-plusÏà¹ØÅäÖÃ
+# mybatis-plusç›¸å…³é…ç½®
 mybatis-plus:
-  # xmlÉ¨Ãè£¬¶à¸öÄ¿Â¼ÓÃ¶ººÅ»òÕß·ÖºÅ·Ö¸ô£¨¸æËß Mapper Ëù¶ÔÓ¦µÄ XML ÎÄ¼şÎ»ÖÃ£©
+  # xmlæ‰«æï¼Œå¤šä¸ªç›®å½•ç”¨é€—å·æˆ–è€…åˆ†å·åˆ†éš”ï¼ˆå‘Šè¯‰ Mapper æ‰€å¯¹åº”çš„ XML æ–‡ä»¶ä½ç½®ï¼‰
   mapper-locations: classpath:**/*Mapper.xml
-  # ÒÔÏÂÅäÖÃ¾ùÓĞÄ¬ÈÏÖµ,¿ÉÒÔ²»ÉèÖÃ
+  # ä»¥ä¸‹é…ç½®å‡æœ‰é»˜è®¤å€¼,å¯ä»¥ä¸è®¾ç½®
   global-config:
-    #Ö÷¼üÀàĞÍ  0:"Êı¾İ¿âID×ÔÔö", 1:"ÓÃ»§ÊäÈëID",2:"È«¾ÖÎ¨Ò»ID (Êı×ÖÀàĞÍÎ¨Ò»ID)", 3:"È«¾ÖÎ¨Ò»ID UUID";
+    #ä¸»é”®ç±»å‹  0:"æ•°æ®åº“IDè‡ªå¢", 1:"ç”¨æˆ·è¾“å…¥ID",2:"å…¨å±€å”¯ä¸€ID (æ•°å­—ç±»å‹å”¯ä¸€ID)", 3:"å…¨å±€å”¯ä¸€ID UUID";
     id-type: 0
-    #×Ö¶Î²ßÂÔ 0:"ºöÂÔÅĞ¶Ï",1:"·Ç NULL ÅĞ¶Ï"),2:"·Ç¿ÕÅĞ¶Ï"
+    #å­—æ®µç­–ç•¥ 0:"å¿½ç•¥åˆ¤æ–­",1:"é NULL åˆ¤æ–­"),2:"éç©ºåˆ¤æ–­"
     field-strategy: 2
-    #ÍÕ·åÏÂ»®Ïß×ª»»
+    #é©¼å³°ä¸‹åˆ’çº¿è½¬æ¢
     db-column-underline: true
-    #Ë¢ĞÂmapper µ÷ÊÔÉñÆ÷
+    #åˆ·æ–°mapper è°ƒè¯•ç¥å™¨
     refresh-mapper: false
-    #Êı¾İ¿â´óĞ´ÏÂ»®Ïß×ª»»
+    #æ•°æ®åº“å¤§å†™ä¸‹åˆ’çº¿è½¬æ¢
     #capital-mode: true
-    #ĞòÁĞ½Ó¿ÚÊµÏÖÀàÅäÖÃ
+    #åºåˆ—æ¥å£å®ç°ç±»é…ç½®
     #key-generator: com.baomidou.springboot.xxx
-    #Âß¼­É¾³ıÅäÖÃ
-    #logic-delete-value: 0 # Âß¼­ÒÑÉ¾³ıÖµ(Ä¬ÈÏÎª 1)
-    #logic-not-delete-value: 1 # Âß¼­Î´É¾³ıÖµ(Ä¬ÈÏÎª 0)
-    #×Ô¶¨ÒåÌî³ä²ßÂÔ½Ó¿ÚÊµÏÖ
+    #é€»è¾‘åˆ é™¤é…ç½®
+    #logic-delete-value: 0 # é€»è¾‘å·²åˆ é™¤å€¼(é»˜è®¤ä¸º 1)
+    #logic-not-delete-value: 1 # é€»è¾‘æœªåˆ é™¤å€¼(é»˜è®¤ä¸º 0)
+    #è‡ªå®šä¹‰å¡«å……ç­–ç•¥æ¥å£å®ç°
     #    meta-object-handler: com.zhengqing.config.MyMetaObjectHandler
-    #×Ô¶¨ÒåSQL×¢ÈëÆ÷
+    #è‡ªå®šä¹‰SQLæ³¨å…¥å™¨
     #sql-injector: com.baomidou.springboot.xxx
   configuration:
-    # ÊÇ·ñ¿ªÆô×Ô¶¯ÍÕ·åÃüÃû¹æÔòÓ³Éä:´ÓÊı¾İ¿âÁĞÃûµ½JavaÊôĞÔÍÕ·åÃüÃûµÄÀàËÆÓ³Éä
+    # æ˜¯å¦å¼€å¯è‡ªåŠ¨é©¼å³°å‘½åè§„åˆ™æ˜ å°„:ä»æ•°æ®åº“åˆ—ååˆ°Javaå±æ€§é©¼å³°å‘½åçš„ç±»ä¼¼æ˜ å°„
     map-underscore-to-camel-case: true
     cache-enabled: false
-    # Èç¹û²éÑ¯½á¹ûÖĞ°üº¬¿ÕÖµµÄÁĞ£¬Ôò MyBatis ÔÚÓ³ÉäµÄÊ±ºò£¬²»»áÓ³ÉäÕâ¸ö×Ö¶Î
+    # å¦‚æœæŸ¥è¯¢ç»“æœä¸­åŒ…å«ç©ºå€¼çš„åˆ—ï¼Œåˆ™ MyBatis åœ¨æ˜ å°„çš„æ—¶å€™ï¼Œä¸ä¼šæ˜ å°„è¿™ä¸ªå­—æ®µ
     #    call-setters-on-nulls: true
-    # Õâ¸öÅäÖÃ»á½«Ö´ĞĞµÄsql´òÓ¡³öÀ´£¬ÔÚ¿ª·¢»ò²âÊÔµÄÊ±ºò¿ÉÒÔÓÃ
+    # è¿™ä¸ªé…ç½®ä¼šå°†æ‰§è¡Œçš„sqlæ‰“å°å‡ºæ¥ï¼Œåœ¨å¼€å‘æˆ–æµ‹è¯•çš„æ—¶å€™å¯ä»¥ç”¨
     #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    # ½â¾öoracle¸üĞÂÊı¾İÎªnullÊ±ÎŞ·¨×ª»»±¨´í£¬mysql²»»á³öÏÖ´ËÇé¿ö
+    # è§£å†³oracleæ›´æ–°æ•°æ®ä¸ºnullæ—¶æ— æ³•è½¬æ¢æŠ¥é”™ï¼Œmysqlä¸ä¼šå‡ºç°æ­¤æƒ…å†µ
     jdbc-type-for-null: 'null'

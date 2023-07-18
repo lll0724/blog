@@ -1,6 +1,6 @@
 package com.lyf.blog.config;
 
-import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableTransactionManagement
 @Configuration
-@MapperScan("com.lyf.blog.mapper.*")
+@MapperScan("com.lyf.blog.mapper")
 public class MybatisPlusConfig {
 
     @Bean
-    public PaginationInterceptor paginationInterceptor(){
-        return new PaginationInterceptor();
+    public PaginationInnerInterceptor paginationInterceptor(){
+        return new PaginationInnerInterceptor();
     }
 }
